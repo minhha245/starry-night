@@ -1,64 +1,88 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<!--    <meta name="viewport" content="width=device-width"/>-->
+    <!--    <meta name="viewport" content="width=device-width"/>-->
     <title>Starry Night Animation Effects</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-<div class="scene">
-    <div class="moon"></div>
-    <section>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </section>
-    <img src="forest.png" class="forest">
-    <img src="cloud1.png" class="cloud1">
-    <img src="cloud2.png" class="cloud2">
-    <img src="cloud3.png" class="cloud3">
-    <img src="cloud1.png" class="cloud4">
-    <img src="cloud2.png" class="cloud5">
-    <img src="cloud3.png" class="cloud6">
+    <div class="scene">
+        <div class="moon"></div>
+        <section>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </section>
+        <img src="./img/forest.png" class="forest">
+        <img src="./img/cloud1.png" class="cloud1">
+        <img src="./img/cloud2.png" class="cloud2">
+        <img src="./img/cloud3.png" class="cloud3">
+        <img src="./img/cloud1.png" class="cloud4">
+        <img src="./img/cloud2.png" class="cloud5">
+        <img src="./img/cloud3.png" class="cloud6">
 
-</div>
+    </div><button id="play" style="background-color: white; width: 40px; height: 30px;
+    color: forestgreen; position: absolute; top:10px; left: 47%;" onclick="toggleAudio()">
+    <img id="volumeIcon" width="16" height="16" src="./img/mute.jpg" alt=""></button>
+<audio id="musicplayer" autoplay loop>
+    <source src="./mp3/Windy_Hill.mp3">
+</audio>
 
-<script type="text/javascript">
-    function stars() {
-        let count = 500;
-        let scene = document.querySelector('.scene');
-        let i = 0;
-        var windowWidth = screen.width;
+    <script type="text/javascript">
+        function toggleAudio() {
+            var audio = document.getElementById('musicplayer');
+            var button = document.getElementById('play');
+            var volumeIcon = document.getElementById('volumeIcon');
 
-        while (i < count) {
-            let star = document.createElement("i");
-            let x = Math.floor(Math.random() * window.innerWidth);
-            let y = Math.floor(Math.random() * window.innerHeight);
-            let duration = Math.random() * 10;
-            let size = Math.random() * 2;
-
-            star.style.left = x + 'px';
-            star.style.top = y + 'px';
-
-            star.style.width = (windowWidth <= 430 ? 3 : 1) + size + 'px';
-            star.style.height = (windowWidth <= 430 ? 3 : 1) + size + 'px';
-
-            star.style.animationDuration = 5 + duration + 's';
-            star.style.animationDelay = duration + 's';
-
-            scene.appendChild(star);
-            i++;
+            if (audio.paused) {
+                audio.play();
+                button.style.color = 'forestgreen';
+                volumeIcon.src = './img/volume.jpg';
+            } else {
+                audio.pause();
+                button.style.color = 'red';
+                volumeIcon.src = './img/mute.jpg';
+            }
         }
-    }
 
-    stars();
-</script>
+        function stars() {
+            let count = 500;
+            let scene = document.querySelector('.scene');
+            let i = 0;
+            var windowWidth = screen.width;
+
+            while (i < count) {
+                let star = document.createElement("i");
+                let x = Math.floor(Math.random() * window.innerWidth);
+                let y = Math.floor(Math.random() * window.innerHeight);
+                let duration = Math.random() * 10;
+                let size = Math.random() * 2;
+
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+
+                star.style.width = (windowWidth <= 430 ? 3 : 1) + size + 'px';
+                star.style.height = (windowWidth <= 430 ? 3 : 1) + size + 'px';
+
+                star.style.animationDuration = 5 + duration + 's';
+                star.style.animationDelay = duration + 's';
+
+                scene.appendChild(star);
+                i++;
+            }
+        }
+
+        stars();
+    </script>
 </body>
+
 </html>
